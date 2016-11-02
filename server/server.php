@@ -1,12 +1,17 @@
 <?php
 
-include_once './autoload.php';
+require __DIR__ . '/bootstrap/autoload.php';
+require __DIR__ . '/app/Services/Response.php';
+require __DIR__ . '/app/Services/Session.php';
 
-include_once __DIR__ . '/app/Services/Response.php';
-include_once __DIR__ . '/app/Services/Session.php';
+$routes['produtos'] = ['controller' => 'ProductController', 'action' => 'index'];
+$routes['produto/detalhes'] = ['controller' => 'ProductController', 'action' => 'show'];
 
-$controller = filter_input(INPUT_GET, 'controller', FILTER_SANITIZE_STRING);
-$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+$url = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+$request = $routes[substr($url, 15)];
+
+$controller = $request['controller'];
+$action = $request['action'];
 
 include_once __DIR__ . '/app/Http/Controllers/' . $controller . '.php';
 

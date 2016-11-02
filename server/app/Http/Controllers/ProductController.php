@@ -1,15 +1,16 @@
 <?php
 
-use Floxie\Models\Product;
+use Floxie\Models\Product\ProductService;
 
 class ProductController {
 
     public function index() {
-        Response::json(new Product());
+        $products = ProductService::seed();
+        Response::json($products);
     }
 
     public function show($id) {
-
+        
     }
 
 }

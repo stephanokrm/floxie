@@ -2,8 +2,8 @@
 
 class Response {
 
-    public static function json($values) {
-        echo json_encode($values);
+    public static function json($value) {
+        echo json_encode($value);
         exit();
     }
 

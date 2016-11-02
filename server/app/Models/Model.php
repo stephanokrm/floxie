@@ -2,7 +2,9 @@
 
 namespace Floxie\Models;
 
-abstract class Model {
+abstract class Model implements \JsonSerializable {
+
+    protected $id;
 
     public function __get($name) {
         return $this->$name;
@@ -10,6 +12,10 @@ abstract class Model {
 
     public function __set($name, $value) {
         $this->$name = $value;
+    }
+
+    public function jsonSerialize() {
+        return get_object_vars($this);
     }
 
 }

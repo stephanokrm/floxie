@@ -1,6 +1,8 @@
 <?php
 
-namespace Floxie\Models;
+namespace Floxie\Models\Product;
+
+use Floxie\Models\Model;
 
 class Product extends Model {
 
@@ -8,5 +10,6 @@ class Product extends Model {
     protected $description;
     protected $price;
     protected $image;
+    protected $rate;
 
 }
