@@ -5,11 +5,13 @@ require __DIR__ . '/app/Services/Response.php';
 require __DIR__ . '/app/Services/Session.php';
 
 $routes['produtos'] = ['controller' => 'ProductController', 'action' => 'index'];
-$routes['produto/detalhes'] = ['controller' => 'ProductController', 'action' => 'show'];
+$routes['produto'] = ['controller' => 'ProductController', 'action' => 'show'];
 
-$url = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-$request = $routes[substr($url, 15)];
-
+$method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+$url = urldecode(parse_url(filter_input(INPUT_SERVER, 'REQUEST_URI'), PHP_URL_PATH));
+$route = str_replace('/', '', substr($url, 15));
+$id = intval(preg_replace('/[^0-9]+/', '', $route), 10);
+$request = $routes[preg_replace('/[0-9]+/', '', $route)];
 $controller = $request['controller'];
 $action = $request['action'];
 
@@ -17,10 +19,21 @@ include_once __DIR__ . '/app/Http/Controllers/' . $controller . '.php';
 
 if (class_exists($controller)) {
     $controller = new $controller();
-    if (method_exists($controller, $action)) {
-        $controller->$action();
+}
+if (method_exists($controller, $action)) {
+    switch ($method) {
+        case 'GET':
+            $controller->$action($id);
+            break;
+        case 'POST';
+            $controller->$action();
+            break;
     }
 }
+
+
+
+
 
 
 

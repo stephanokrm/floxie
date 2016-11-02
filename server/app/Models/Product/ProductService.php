@@ -4,7 +4,7 @@ namespace Floxie\Models\Product;
 
 class ProductService {
 
-    public static function seed() {
+    public static function index() {
         $product = new Product();
         $product->id = 1;
         $product->name = 'Inferno';
@@ -22,7 +22,7 @@ class ProductService {
         $product->image = 'app/assets/img/doutor_estranho.png';
         $product->rate = 4;
         $products[] = $product;
-        
+
         $product = new Product();
         $product->id = 3;
         $product->name = 'Ouija 2';
@@ -31,7 +31,7 @@ class ProductService {
         $product->image = 'app/assets/img/ouija_2.jpg';
         $product->rate = 4.5;
         $products[] = $product;
-        
+
         $product = new Product();
         $product->id = 4;
         $product->name = 'Cegonhas';
@@ -40,7 +40,7 @@ class ProductService {
         $product->image = 'app/assets/img/cegonhas.jpg';
         $product->rate = 4.5;
         $products[] = $product;
-        
+
         $product = new Product();
         $product->id = 5;
         $product->name = 'Meu Amigo o Dragão';
@@ -49,7 +49,7 @@ class ProductService {
         $product->image = 'app/assets/img/meu_amigo_o_dragao.jpg';
         $product->rate = 4;
         $products[] = $product;
-        
+
         $product = new Product();
         $product->id = 6;
         $product->name = 'A Garota no Trem';
@@ -59,6 +59,14 @@ class ProductService {
         $product->rate = 4.5;
         $products[] = $product;
         return $products;
+    }
+
+    public static function show($id) {
+        foreach (self::index() as $product) {
+            if ($product->id == $id) {
+                return $product;
+            }
+        }
     }
 
 }
