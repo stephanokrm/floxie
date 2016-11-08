@@ -6,6 +6,7 @@ require __DIR__ . '/app/Services/Session.php';
 
 $routes['produtos'] = ['controller' => 'ProductController', 'action' => 'index'];
 $routes['produto'] = ['controller' => 'ProductController', 'action' => 'show'];
+$routes['comentario'] = ['controller' => 'ProductController', 'action' => 'addComment'];
 
 $method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
 $url = urldecode(parse_url(filter_input(INPUT_SERVER, 'REQUEST_URI'), PHP_URL_PATH));
@@ -26,7 +27,8 @@ if (method_exists($controller, $action)) {
             $controller->$action($id);
             break;
         case 'POST';
-            $controller->$action();
+            $data = (object) filter_input_array(INPUT_POST);
+            $controller->$action($data);
             break;
     }
 }

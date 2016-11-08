@@ -10,43 +10,54 @@
     </head>
     <body>
         <header>
-            <nav>
+            <nav class="nav-extended">
                 <div class="nav-wrapper purple">
                     <div class="container">
                         <a href="produtos" class="brand-logo">Floxie</a>
                         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                        <!--                        <ul class="right hide-on-med-and-down">
-                                                    <li><a href="sass.html">Sass</a></li>
-                                                    <li><a href="badges.html">Components</a></li>
-                                                    <li><a href="collapsible.html">Javascript</a></li>
-                                                    <li><a href="mobile.html">Mobile</a></li>
-                                                </ul>
-                                                <ul class="side-nav" id="mobile-demo">
-                                                    <li><a href="sass.html">Sass</a></li>
-                                                    <li><a href="badges.html">Components</a></li>
-                                                    <li><a href="collapsible.html">Javascript</a></li>
-                                                    <li><a href="mobile.html">Mobile</a></li>
-                                                </ul>-->
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="#" >&nbsp;</a></li>
+                            <li><a href="#">&nbsp;</a></li>
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo">
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <ul class="tabs tabs-transparent">
+                            <li class="tab all"><a class="active" href="#all">Todos</a></li>
+                            <li class="tab top"><a href="#top">Populares</a></li>
+                            <li class="tab cheap"><a href="#cheap">Baratos</a></li>
+                        </ul>
                     </div>
                 </div>
             </nav>
         </header>
         <main class="container">
-            <div class="row">
-                <div class="col s12 m12 l12">
-                    <a class="waves-effect waves-light btn purple">Mais popular</a>
-                    <a class="waves-effect waves-light btn purple right">Menor preço</a>
-                </div>
-            </div>
             <div class="row" id="products"></div>
-            
             <div id="modal" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h4 id="movie_title"></h4>
-                    <p id="movie_description"></p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                    <div class="row">
+                        <div class="col s12 m2 l2">
+                            <img class="movie-image"  id="img-movie" src=""/>
+                        </div>
+                        <div class="col s12 m10 l10">
+                            <h4 id="movie_title"></h4>
+                            <p id="movie_description"></p>
+                        </div>
+                    </div>
+                    <div class="row valign-wrapper">
+                        <form class="col s8 m11 l11 comment-form">
+                            <input type="hidden" name="movie_id" id="movie_id" value=""/>
+                            <div class="input-field">
+                                <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                                <label for="textarea1">Cometário</label>
+                            </div>
+                        </form>
+                        <div class="col s4 m1 l1 valign">
+                            <button class="btn-floating btn-large waves-effect waves-light purple submit-button" type="submit"><i class="material-icons">send</i></button>
+                        </div>
+                    </div>
+                    <div class="row" id="comments"></div>
                 </div>
             </div>
         </main>
