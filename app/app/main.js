@@ -1,5 +1,5 @@
 $(document).ready(init);
-var ROUTE = 'http://localhost/Floxie/server/';
+var ROUTE = 'http://localhost:8080/server/';
 
 function init() {
     var productList = [];
@@ -11,18 +11,23 @@ function init() {
     $('.submit-button').click(submitForm);
 
     $('.modal').modal({
-        dismissible: true, // Modal can be dismissed by clicking outside of the modal
-        opacity: .5, // Opacity of modal background
-        in_duration: 300, // Transition in duration
-        out_duration: 200, // Transition out duration
-        starting_top: '4%', // Starting top style attribute
-        ending_top: '10%', // Ending top style attribute
-        ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-            console.log(modal, trigger);
-        },
-        complete: function () {
-
-        } // Callback for Modal close
+        dismissible: true,
+        opacity: .5,
+        in_duration: 300,
+        out_duration: 200,
+        starting_top: '4%',
+        ending_top: '10%',
+        ready: function (modal, trigger) {
+            var id = $('#movie_id').val();
+            $.getJSON(ROUTE + 'comentarios/' + id, function (comments) {
+                $.each(comments, function (key, comment) {
+                    var commentElement = '<div class="col s12 m12 l12">';
+                    commentElement += comment.text;
+                    commentElement += '</div>';
+                    $('#comments').append(commentElement);
+                });
+            });
+        }
     });
 
     $.getJSON(ROUTE + 'produtos', function (products) {
@@ -71,7 +76,6 @@ function init() {
 
     function buildProductCard(product) {
         var price = document.createElement('div');
-
         var col = document.createElement('div');
         col.setAttribute('class', 'col s12 m6 l6');
         var card = document.createElement('div');
@@ -135,10 +139,17 @@ function init() {
     }
 
     function submitForm() {
-        var data = $('.comment-form').serialize();
-        $.post(ROUTE + 'comentario', data, function () {
-            
+        var message = {
+            text: $('#textarea1').val(),
+            date: new Date(),
+            movie: $('#movie_id').val()
+        };
+        $.post(ROUTE + 'comentario', message, function () {
+
         });
+    }
+
+    function addComment(text) {
         $('#comments').append($('#textarea1').val());
     }
 }

@@ -71,14 +71,14 @@ class ProductService {
 
     public static function addComment($dados) {
         $comments = \Session::get('comments');
-        $comments[] = ['comment' => $dados->comment, 'movie_id' => $dados->movie_id];
+        $comments[] = ['text' => $dados->text, 'movie' => $dados->movie, 'date' => $dados->date];
         \Session::put('comments', $comments);
     }
 
     public static function getComments($id) {
-        $comments = \Session::get('comments');
+        $comments = \Session::has('comments') ? \Session::get('comments') : [];
         return array_filter($comments, function($comment) use ($id) {
-            if ($comment['movie_id'] == $id) {
+            if ($comment['movie'] == $id) {
                 return $comment;
             }
         });

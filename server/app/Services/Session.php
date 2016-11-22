@@ -3,7 +3,9 @@
 class Session {
 
     private static function start() {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     public static function put($key, $value = null) {
