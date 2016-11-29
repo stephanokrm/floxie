@@ -7,6 +7,7 @@
         <link href="app/assets/css/app.css" rel="stylesheet">
         <title>Floxie</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"/>
     </head>
     <body>
         <header>
@@ -40,24 +41,28 @@
                         <div class="col s12 m2 l2">
                             <img class="movie-image"  id="img-movie" src=""/>
                         </div>
-                        <div class="col s12 m10 l10">
+                        <div class="col s12 m4 l4">
                             <h4 id="movie_title"></h4>
                             <p id="movie_description"></p>
                         </div>
-                    </div>
-                    <div class="row valign-wrapper">
-                        <form class="col s8 m11 l11 comment-form">
-                            <input type="hidden" name="movie_id" id="movie_id" value=""/>
-                            <div class="input-field">
-                                <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
-                                <label for="textarea1">Cometário</label>
+                        <div class="col s12 m5 l5">
+                            <div class="row valign-wrapper">
+                                <form class="col s8 m11 l11 comment-form">
+                                    <input type="hidden" name="movie_id" id="movie_id" value=""/>
+                                    <div class="input-field">
+                                        <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                                        <label for="textarea1">Cometário</label>
+                                    </div>
+                                </form>
+                                <div class="col s4 m1 l1 valign">
+                                    <button class="btn-floating btn-large waves-effect waves-light purple submit-button" type="submit"><i class="material-icons">send</i></button>
+                                </div>
                             </div>
-                        </form>
-                        <div class="col s4 m1 l1 valign">
-                            <button class="btn-floating btn-large waves-effect waves-light purple submit-button" type="submit"><i class="material-icons">send</i></button>
+                            <div class="row">
+                                <ul class="collection" id="comments"></ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" id="comments"></div>
                 </div>
             </div>
         </main>

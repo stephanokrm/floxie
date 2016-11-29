@@ -1,5 +1,7 @@
+/* global Materialize */
+
 $(document).ready(init);
-var ROUTE = 'http://localhost:8080/server/';
+var ROUTE = 'http://localhost/Floxie/server/';
 
 function init() {
     var productList = [];
@@ -21,10 +23,7 @@ function init() {
             var id = $('#movie_id').val();
             $.getJSON(ROUTE + 'comentarios/' + id, function (comments) {
                 $.each(comments, function (key, comment) {
-                    var commentElement = '<div class="col s12 m12 l12">';
-                    commentElement += comment.text;
-                    commentElement += '</div>';
-                    $('#comments').append(commentElement);
+                    addComment(comment);
                 });
             });
         }
@@ -141,15 +140,26 @@ function init() {
     function submitForm() {
         var message = {
             text: $('#textarea1').val(),
-            date: new Date(),
+            date: new Date().toLocaleString(),
             movie: $('#movie_id').val()
         };
         $.post(ROUTE + 'comentario', message, function () {
-
+            addComment(message);
+            $('#textarea1').val('');
+            Materialize.updateTextFields();
         });
     }
 
-    function addComment(text) {
-        $('#comments').append($('#textarea1').val());
+    function addComment(messageObj) {
+        var message = '<li class="collection-item avatar">';
+        message += '<img src="http://image.flaticon.com/icons/svg/149/149071.svg" alt="" class="circle">';
+        message += '<span class="title">Usuário</span>';
+        message += '<p>' + messageObj.text + '<br>';
+        message += messageObj.date;
+        message += '</p>';
+        message += '</li>';
+        $('#comments').append(message);
+        var div = document.getElementById("comments");
+        div.scrollTop = div.scrollHeight;
     }
 }
