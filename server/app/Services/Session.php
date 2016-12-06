@@ -3,7 +3,7 @@
 /**
  * Classe útil para manipulação de sessão
  *
- * @author Stephano <stephano.ramos.p@gmail.com>
+ * @author Stephano Ramos Pinto <stephano.ramos.p@gmail.com>
  */
 
 class Session {
